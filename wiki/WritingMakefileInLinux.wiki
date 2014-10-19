@@ -1,0 +1,46 @@
+#Linux下Makefile文件编写教程
+ = Writing Makefile In Linux =
+在一个demo目录下有三个目录：分别是test, include, lib
+         test目录下有三个目录，分别是include和source和project，在目录include下有三个文件，分别是a.h，b.h，c.h，在source目录下有三个文件，分别是a.c，b.c，c.c，project目录下放的是makefile文件
+         include目录下有多个头文件，分别是d.h，m.h， n.h，f.h
+         lib目录下有多个静态库，分别是：liberr.a，libarm.a
+        现在a.c包括a.h,b.h,d.h；b.c包括b.h，c.h，m.h，n.h；c.c包括a.h，b.h，c.h
+         现在要求写一个makefile文件，把.c文件编译成.o文件，并链接静态库，生成的目标文件和可执行文件放哪儿无所谓
+		 
+ = ANSWER =
+ INC_PATH := -I./include/
+LIB_PATH := -L./lib/
+LIBS     := $(LIB_PATH) -lerr -larm
+CC       := gcc
+LD       := gcc
+CFLAGS   := -O2 -Wall $(INC_PATH)
+SRC_PATH := ./source
+SOURCE   := $(SRC_PATH)/a.c\
+            $(SRC_PATH)/b.c\
+            $(SRC_PATH)/c.c
+TARGET   := target
+OBJS     := a.o b.o c.o
+$(TARGET): $(OBJS)
+    $(LD) -O2 -o $(TARGET) $(OBJS) $(LIBS)
+a.o : $(SRC_PATH)/a.c
+    $(CC) $(CFLAGS) -c -o $@ $<
+b.o : $(SRC_PATH)/b.c
+    $(CC) $(CFLAGS) -c -o $@ $<
+c.o : $(SRC_PATH)/c.c
+    $(CC) $(CFLAGS) -c -o $@ $<
+.PHONY: clean
+clean:
+    -rm -f $(OBJS)
+	
+ = 解释 =
+ 　$^ 所有的依赖目标的集合。以空格分隔。如果在依赖目标中有多个重复的,那个这个变量
+会去除重复的依赖目标,只保留一份。这里会自动替换成 $(SRC_PATH)/*.c 这样的样子。
+$@   表示规则中的目标文件集。在模式规则中,如果有多个目标,那么,"$@"就是匹配于
+目标中模式定义的集合。这里会自动替换成 a.o、b.o 或者 c.o。具体替换成什么，要看他位于哪一条规则下面。
+
+　　注释的话，可以简单的这么说：
+文件主要分3部分；
+第一部分就是各种 “:=” 的部分，用来声明一些变量，以便于后边使用；
+第二部分是从第一部分之后一直到.PHONY之前，有四个重复的小段，每个段的结构都是
+
+XXX : YYY

@@ -1,0 +1,26 @@
+#½»²æ±àÒë½Ì³Ì
+ = Cross Compile =
+If you want to use a program, currently not contained in the OpenWrt repository, you probably won't find a binary compiled for your CPU. Provided that it is released as open source, you can download the code and compile it using the OpenWrt Buildroot.
+Note that not every code is compilable for every CPU architecture. Also performance on embedded systems is limited compared to ordinary computers.
+
+ |Procedure
+ * Follow the build instructions outlined in OpenWrt Buildroot ¨C Usage
+ * Locate the toolchain binaries in the staging_dir/toolchain-architecture_gcc-compilerver_uClibc-libcver/bin/ directory
+ * Add that directory to the PATH environment variable:
+	||PATH=$PATH:(your toolchain/bin directory here)
+	||export PATH
+ * Set the STAGING_DIR environment variable to the above toolchain dir and export it:
+	||STAGING_DIR=(your toolchain directory here)
+	||export STAGING_DIR
+ * Download and unpack the code to be compiled, change into the unpacked directory
+ * Pass the host and build to the build system of the package to trigger cross-compile
+	 * For GNU configure, use --build=architecture-unkown-linux-gny --host=architecture-openwrt-linux-uclibc (for example: ./configure --build=x86_64-unkown-linux-gnu  ¨Chost=mips-openwrt-linux-uclibc)
+		||Run ./config.guess to get the --build= option.
+		||Check the output and ensure that 'checking whether we are cross compiling¡­ yes' is yes.
+	 * For GNU make, override the CC and LD environment variables (usually not needed if GNU configure was used)
+		||make CC=architecture-openwrt-linux-uclibc-gcc LD=architecture-openwrt-linux-uclibc-ld
+ * The compiled program will be somewhere inside the folder your run ./configure and make from, try doing find -iname *program*
+ * Run file program to confirm cross-compiling was successful.
+ * If compilation aborts due to missing header files or shared objects, you might need to override CFLAGS and LDFLAGS to point to the staging_dir/target-architecture_uClibc-libcver/usr/include and ¡­/usr/lib directories
+ * Debugging requires gdb in the toolchain. Default config does not include it. Include using make menuconfig. [Advanced configuration options¡úToolchain Options¡úBuild gdb]
+ * Remote debugging can be done using script ./scripts/remote-gdb
