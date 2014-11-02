@@ -1,19 +1,19 @@
-Release Time
-20141102 0240 UTC +0800
+	Release Time
+	20141102 0240 UTC +0800
 
-Release Version
-1.0
+	Release Version
+	1.0
 
-READ ME
-Ê¹ÓÃAttitude Adjustment°æSDK±àÒë
-±àÒë¿ªÊ¼Ç°£¬Çë½«staging_dir/target-XXXX/usr/ÏÂµÄincludeºÍlibÎÄ¼ş¼Ğ¿½±´µ½staging_dir/toolchain-XXXX/usrÏÂ£¬×·¼Óµ½Ô­À´µÄÁ½¸öÎÄ¼ş¼ĞÖĞ
-°ÑÕâ¸örepo·ÅÔÚPackageÎÄ¼ş¼ĞÀïÃæ£¬¸ÄÃûÎªzlevoclient£¬
-²¢Ê¹ÓÃsu°²×°ccache
-°²×°Íê³Éºó£¬ÔÚSDKÖ÷Ä¿Â¼´ò¿ªÖÕ¶Ë
-make V=s
-×îºó»áÌáÊ¾³ö´í£¬´íÎóĞÅÏ¢´ó¸ÅÎª¡°find no rule to make install"
-È»ºó¾Í¿ÉÒÔÔÚbuild_dir/target-XXXX/zlevoclientÏÂÕÒµ½zlevoclient³ÌĞòÎÄ¼ş
-¸´ÖÆµ½Â·ÓÉÆ÷/root/usr/binÏÂ£¬¼´¿ÉÔÚshellÖĞÖ±½ÓÊ¹ÓÃzlevoclientÃüÁîÆô¶¯³ÌĞò
+READ ME		
+ä½¿ç”¨Attitude Adjustmentç‰ˆSDKç¼–è¯‘	
+ç¼–è¯‘å¼€å§‹å‰ï¼Œè¯·å°†staging_dir/target-XXXX/usr/ä¸‹çš„includeå’Œlibæ–‡ä»¶å¤¹æ‹·è´åˆ°staging_dir/toolchain-XXXX/usrä¸‹ï¼Œè¿½åŠ åˆ°åŸæ¥çš„ä¸¤ä¸ªæ–‡ä»¶å¤¹ä¸­	
+æŠŠè¿™ä¸ªrepoæ”¾åœ¨Packageæ–‡ä»¶å¤¹é‡Œé¢ï¼Œæ”¹åä¸ºzlevoclientï¼Œ	
+å¹¶ä½¿ç”¨suå®‰è£…ccache	
+å®‰è£…å®Œæˆåï¼Œåœ¨SDKä¸»ç›®å½•æ‰“å¼€ç»ˆç«¯	
+make V=s	
+æœ€åä¼šæç¤ºå‡ºé”™ï¼Œé”™è¯¯ä¿¡æ¯å¤§æ¦‚ä¸ºâ€œfind no rule to make install"	
+ç„¶åå°±å¯ä»¥åœ¨build_dir/target-XXXX/zlevoclientä¸‹æ‰¾åˆ°zlevoclientç¨‹åºæ–‡ä»¶	
+å¤åˆ¶åˆ°è·¯ç”±å™¨/root/usr/binä¸‹ï¼Œå³å¯åœ¨shellä¸­ç›´æ¥ä½¿ç”¨zlevoclientå‘½ä»¤å¯åŠ¨ç¨‹åº	
 
-THANK
-zlevoclientÔ­×÷Õßapt-blog.net
+THANK		
+zlevoclientåŸä½œè€…apt-blog.net
