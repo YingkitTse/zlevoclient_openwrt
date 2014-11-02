@@ -1,0 +1,12 @@
+STRD username pw
+
+for ((i=0;i<5,i++)) do
+	if ping -c minute ipaddress |grep "ttl">/dev/null 2>&1;then
+		echo "connected.";
+		break;
+	else
+		STRD username pw;
+	fi
+done
+
+if ping -c minute ipaddress |grep "ttl">/dev/null ;then echo "ok";else STRD username pw;fi

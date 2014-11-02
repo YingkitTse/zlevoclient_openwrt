@@ -1,0 +1,12 @@
+断开连接：
+killall pppd
+
+
+重新拨号：
+/usr/sbin/pppd plugin rp-pppoe.so mtu 1492 mru 1492 nic-eth0.1 persist usepeerdns nodefaultroute user 【用户名】 password 【密码】 ipparam  wan ifname pppoe-wan
+
+
+
+
+结合crontab可以实现定时重拨
+其实luc里面计划任务也可以做到

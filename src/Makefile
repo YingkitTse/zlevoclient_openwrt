@@ -1,24 +1,19 @@
-TARGET = zlevoclient
-BIN_DIR = /usr/bin/
-INCLUDES = 
-#LIBS = ~/toolchains/3.4.6-uclibc-0.9.28/lib/libpcap.a
+CC = gcc
+LIBS = -lpcap -liconv
+CFLAGS = -Wall -g
 
 
+.PHONY: all
+all: zlevoclient
 
-C_SOURCES       = $(wildcard *.c)
-C_OBJS = $(patsubst %.c, %.o, $(C_SOURCES))
+zlevoclient	: md5.o zlevoclient.o
+	$(CC) $(CFLAGS) -o $@ md5.o zlevoclient.o $(LIBS)
 
-# ------------  generate the names of the object files  ------------------------
-OBJECTS         = $(addsuffix .o,$(BASENAMES))
+md5.o	: md5.c md5.h
+	$(CC) $(CFLAGS) -c $<
 
-# ------------  generate the names of the hidden prerequisite files  -----------
-PREREQUISITES   = $(addprefix .,$(addsuffix .d,$(BASENAMES)))
-
-# ------------  make the executable (the default goal)  ------------------------
-%.o:%.c
-	$(CC) -c $<$ $(CCFLAGS)
-
-$(TARGET): $(CPP_OBJS) $(C_OBJS)
-	$(CXX)$(LINKFLAGS) -o $(TARGET) $^ $(LIBS)
-
-all:$(TARGET)
+zlevoclient.o : zlevoclient.c
+	$(CC) $(CFLAGS) -c $<
+	
+clean :
+	rm -v *.o zlevoclient
